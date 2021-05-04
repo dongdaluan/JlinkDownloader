@@ -1,0 +1,51 @@
+﻿<Window x:Class="JlinkDownloader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JlinkDownloader"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="Jlink downloader" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type HeaderedContentControl}">
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type HeaderedContentControl}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter ContentSource="Header" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <ContentPresenter Grid.Column="1" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <StackPanel Orientation="Vertical">
+        <HeaderedContentControl Header="Device: ">
+            <TextBox x:Name="device" Text="STM32F103CB"/>
+        </HeaderedContentControl>
+        <HeaderedContentControl Header="Speed: ">
+            <TextBox x:Name="speed" Text="4000"/>
+        </HeaderedContentControl>
+        <HeaderedContentControl Header="Address(hex): ">
+            <TextBox x:Name="address" Text="8000000"/>
+        </HeaderedContentControl>
+        <HeaderedContentControl Header="File: ">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="file" IsReadOnly="True"/>
+                <Button Content="..." Click="OnBrowseClick" Grid.Column="1" Margin="4,0,0,0" Padding="10,4"/>
+            </Grid>
+        </HeaderedContentControl>
+        <Button Content="Download" Margin="10,4" Click="OnDownloadClick"/>
+        <TextBox IsReadOnly="True" x:Name="result" AcceptsReturn="True"/>
+    </StackPanel>
+</Window>
